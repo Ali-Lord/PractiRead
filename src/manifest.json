@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "PractiRead",
+  "version": "1.0",
+  "description": "An open source secure and privacy-friendly RSVP (Rapid Serial Visual Presentation) speed reader.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "PractiRead@raz.local", // temporary
+      "strict_min_version": "149.0"
+    },
+
+    "gecko_android": {
+      "id": "PractiRead@raz.local"
+    }
+  },
+
+  "permission":[
+    "activeTab",
+    "storage"
+  ],
+
+  "action": {
+    // TODO
+  },
+
+  "icons": {
+    // TODO
+  },
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  }
+}
