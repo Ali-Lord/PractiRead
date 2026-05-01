@@ -1,0 +1,47 @@
+/* TODO: Redesign it to make it readable */
+body {
+  width: 300px;
+  font-family: sans-serif; /* find reputable fonts */
+  background-color: #151515;
+  color: #eeeeee;
+  margin: 0;
+  padding: 15px;
+}
+
+.word-box {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 1px solid #333;
+  background-color: #000;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.controls, .settings {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px, 15px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+input {
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+  width: 60px;
+}
