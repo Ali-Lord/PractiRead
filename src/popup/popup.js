@@ -10,7 +10,7 @@ const wpdInput = document.getElementById('wpd');
 const wpmInput = document.getElementById('wpm');
 
 /*
- * Load data from the local storage
+ * Load config data from the local storage
  */
 browser.storage.local.get(['savedWpm', 'savedWpd']).then((result) => {
   if (result.savedWpd) { wpdInput.value = result.savedWpd; }
@@ -21,7 +21,8 @@ browser.storage.local.get(['savedWpm', 'savedWpd']).then((result) => {
 /**
  * RSVP Loop.
  * TODO: have a method to go forward and backward (like a music player)
- * TODO: n number of words to display and skip
+ * TODO: display n number of words and skip n number of words
+ * TODO: display percentage of completion
  */
 function playNextWord() {
   if (currIdx >= words.length) {
@@ -63,13 +64,12 @@ startBtn.addEventListener('click', async ()=> {
 
   const tabs = await browser.tabs.query({ active: true, currentWindow: true});
 
-  //const dummyAliText = "Did you know Ali Raz is in fact actually Tom Cruise? Yeah, I know. You're shocked, right? So was I when I first learnt that. Life comes with many surprises, but my favourite one has always been the fact that no one is as cool as Ali. Oh, man. How can a man be so perfect! Imagine my employer reading this. Oh, our Cybersecurity Engineer at our financial company in a FINANCIAL center is a crazy guy, hah";
-
   try {
     const resp = await browser.tabs.sendMessage(tabs[0].id, {action: "getSelectedText"});
 
     if (resp && resp.text) {
-      words = resp.text.split(/\s+/);
+      const sanitizedText = resp.text.replace(/[\x00-\x1F\x7F-\x9F]/g, "").replace(/\s+/g, " ");
+      words = sanitizedText.split(/\s+/);
       isPaused = false;
       display.textContent = "";
       playNextWord();
@@ -91,7 +91,6 @@ pauseBtn.addEventListener('click', ()=> {
  * the val is allowed to be higher than my setup restriction for both wpm and wpd.
  * Solution that may work. Everytime popup opens, check the values if they're safe.
  */
-
 wpdInput.addEventListener('change', ()=> {
   const val = parseInt(wpdInput.value);
   if (val < 1) { wpdInput.value = 1; }
