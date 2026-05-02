@@ -1,13 +1,14 @@
 body {
   width: 500px;
-  font-family: Garamond, serif;
   background-color: #1b202c;
   color: #eee;
   margin: 0;
   padding: 15px;
+  font-family: Arial, sans-serif;
 }
 
 .word-box {
+  font-family: Garamond, serif;
   font-size: 52px;
   color: #fff;
   background:#000;
@@ -26,12 +27,6 @@ body {
   display: flex;
   justify-content: flex-start;
   margin-left: 2px;
-}
-
-.settings {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 18px;
 }
 
 button {
@@ -53,17 +48,28 @@ button:active {
   left: 5px;
 }
 
+.settings {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2.5px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
 .settings > label {
   margin-top: 5px;
   margin-right: 3px;
+  font-weight: bold;
 }
 
 input {
   background: #000;
   border: 0px;
   color: #eee;
-  width: 60px;
+  width: 40px;
   padding: 5px 10px;
-  font-family: Garamond, serif;
-  font-size: 18px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
 }
