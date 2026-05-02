@@ -6,7 +6,17 @@ let timer = null;
 const display = document.getElementById('reader-display');
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
+const wpdInput = document.getElementById('wpd');
 const wpmInput = document.getElementById('wpm');
+
+/*
+ * Load data from the local storage
+ */
+browser.storage.local.get(['savedWpm', 'savedWpd']).then((result) => {
+  if (result.savedWpd) { wpdInput.value = result.savedWpd; }
+  if (result.savedWpm) { wpmInput.value = result.savedWpm; }
+
+});
 
 /**
  * RSVP Loop.
@@ -76,8 +86,24 @@ pauseBtn.addEventListener('click', ()=> {
   stopReading();
 });
 
+/*
+ * TODO: There's a bug that when the extension popup is closed and opened without leaving the input focus,
+ * the val is allowed to be higher than my setup restriction for both wpm and wpd.
+ * Solution that may work. Everytime popup opens, check the values if they're safe.
+ */
+
+wpdInput.addEventListener('change', ()=> {
+  const val = parseInt(wpdInput.value);
+  if (val < 1) { wpdInput.value = 1; }
+  if (val > 8) { wpdInput.value = 8; }
+
+  browser.storage.local.set({ savedWpd: val });
+});
+
 wpmInput.addEventListener('change', ()=> {
   const val = parseInt(wpmInput.value);
-  if (val < 10) wpmInput.value = 10;
-  if (val > 10000) wpmInput.value = 10000;
+  if (val < 10) { wpmInput.value = 10; }
+  if (val > 10000) { wpmInput.value = 10000; }
+
+  browser.storage.local.set({ savedWpm: val });
 });
