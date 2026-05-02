@@ -51,6 +51,10 @@ startBtn.addEventListener('click', ()=> {
   playNextWord();
 });
 
+pauseBtn.addEventListener('click', ()=> {
+  stopReading();
+});
+
 wpmInput.addEventListener('change', ()=> {
   const val = parseInt(wpmInput.value);
   if (val < 10) wpmInput.value = 10;
