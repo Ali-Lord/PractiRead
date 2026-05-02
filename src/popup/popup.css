@@ -1,47 +1,69 @@
-/* TODO: Redesign it to make it readable */
 body {
-  width: 300px;
-  font-family: sans-serif; /* find reputable fonts */
-  background-color: #151515;
-  color: #eeeeee;
+  width: 500px;
+  font-family: Garamond, serif;
+  background-color: #1b202c;
+  color: #eee;
   margin: 0;
   padding: 15px;
 }
 
 .word-box {
-  height: 80px;
+  font-size: 52px;
+  color: #fff;
+  background:#000;
+  margin-bottom: 10px;
+  height: 180px;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  border: 1px solid #333;
-  background-color: #000;
-  margin-bottom: 15px;
-  border-radius: 4px;
 }
 
-.controls, .settings {
+.controls {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  justify-content: flex-start;
+  margin-left: 2px;
+}
+
+.settings {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
 }
 
 button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 8px, 15px;
+  flex: .05;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #000;
   cursor: pointer;
-  border-radius: 2px;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
 }
 
-button:hover {
-  background-color: #444;
+button:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+.settings > label {
+  margin-top: 5px;
+  margin-right: 3px;
 }
 
 input {
   background: #000;
-  border: 1px solid #333;
-  color: #fff;
+  border: 0px;
+  color: #eee;
   width: 60px;
+  padding: 5px 10px;
+  font-family: Garamond, serif;
+  font-size: 18px;
 }
