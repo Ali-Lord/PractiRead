@@ -1,6 +1,6 @@
 body {
   width: 500px;
-  background-color: #1b202c;
+  background-color: #2D2424;
   color: #eee;
   margin: 0;
   padding: 15px;
@@ -48,6 +48,43 @@ button:active {
   left: 5px;
 }
 
+.progress-control {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #000;
+  height: 5px;
+  background-image: linear-gradient(#7DD3FC, #7DD3FC);
+  background-size: 2% 100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border: 3.5px solid #000;
+  border-radius: 0px;
+  margin-top: -7px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border: 3.5px solid #000;
+  border-radius: 0px;
+}
+
 .settings {
   display: flex;
   justify-content: flex-end;
@@ -62,11 +99,11 @@ button:active {
   font-weight: bold;
 }
 
-input {
+input, select{
   background: #000;
   border: 0px;
   color: #eee;
-  width: 40px;
+  width: 10em;
   padding: 5px 10px;
   font-family: Arial, sans-serif;
   font-size: 14px;

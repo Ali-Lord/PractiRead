@@ -11,6 +11,10 @@
         <span class="placeholder">Click &#x25B6; to read.</span>
       </div>
 
+      <div class="progress-control">
+        <input type="range" id="readProgress" name="readProgress" min="0" max="100" value="0">
+      </div>
+
       <div class="controls">
         <button id="start-btn">&#x25B6;</button>
         <button id="pause-btn">&#10074;&#10074;</button>
@@ -18,8 +22,12 @@
       </div>
 
       <div class="settings">
-        <label for="wpd">Words per display:</label>
-        <input type="number" id="wpd" value="1" min="1" max="8">
+        <label for="wpd">Difficulty:</label>
+        <select name="wpd" id="wpd">
+          <option value="1">Easy</option>
+          <option value="2">Intermediate</option>
+          <option value="3">Hard</option>
+        </select>
       </div>
       <div class="settings">
         <label for="wpm">Words per minute:</label>

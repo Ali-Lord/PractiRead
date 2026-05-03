@@ -4,13 +4,14 @@ let isPaused = true;
 let timer = null;
 
 const display = document.getElementById('reader-display');
+const readProgressInput = document.getElementById('readProgress');
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
 const wpdInput = document.getElementById('wpd');
 const wpmInput = document.getElementById('wpm');
 
 /*
- * Load config data from the local storage
+ * Load config data from the storage (browser local)
  */
 browser.storage.local.get(['savedWpm', 'savedWpd']).then((result) => {
   if (result.savedWpd) { wpdInput.value = result.savedWpd; }
@@ -21,34 +22,52 @@ browser.storage.local.get(['savedWpm', 'savedWpd']).then((result) => {
 /**
  * RSVP Loop.
  * TODO: have a method to go forward and backward (like a music player)
- * TODO: display n number of words and skip n number of words
  * TODO: display percentage of completion
  */
 function playNextWord() {
+  updateProgressBar();
+
   if (currIdx >= words.length) {
     stopReading();
-    display.textContent = "Finished!"; // TODO: this is lame.
+    display.textContent = "Finished!"; // TODO: this is lame. Also, don't lock it
     return;
   }
 
-  const word = words[currIdx];
-  display.textContent = word;
-  currIdx++;
+  const chunk = renderTextChunk(true);
 
   const baseWpm = parseInt(wpmInput.value) || 300;
   let msPerWord = 60000 / baseWpm;
 
   // Punctuation delay
-  if (/[.,!?;]/.test(word)){
+  if (/[.,!?;]/.test(chunk)){
     msPerWord *= 2;
   }
 
-  // Long words delay
-  if (word.length > 7) {
-    msPerWord *= 1.5;
+  timer = setTimeout(playNextWord, msPerWord);
+}
+
+function renderTextChunk(bShouldIncrementIdx) {
+  const wpd = parseInt(wpdInput.value) || 1;
+  let chunk = words[currIdx];
+  let currNumWordsInChunk = 1;
+
+  while (currNumWordsInChunk < wpd && (currIdx + currNumWordsInChunk) < words.length) {
+    let nextWord = words[currIdx + currNumWordsInChunk];
+
+    if (/[.,!?;]/.test(chunk)) { break;}
+
+    if ((chunk.length + nextWord.length) < 18) {
+      chunk += " " + nextWord;
+      currNumWordsInChunk++;
+    } else {
+      break;
+    }
   }
 
-  timer = setTimeout(playNextWord, msPerWord);
+  display.textContent = chunk;
+  if (bShouldIncrementIdx) { currIdx += currNumWordsInChunk; }
+
+  return chunk;
 }
 
 function stopReading() {
@@ -56,9 +75,35 @@ function stopReading() {
   clearTimeout(timer);
 }
 
+function updateProgressBar(bManualChange = false) {
+  if (!bManualChange) { readProgressInput.value = (currIdx / words.length) * 100; }
+  else {
+    currIdx = parseInt((readProgressInput.value / 100) * words.length);
+    renderTextChunk(false);
+  }
+
+  // To update progressbar color
+  const min = parseFloat(readProgressInput.min) || 0;
+  const max = parseFloat(readProgressInput.max) || 100;
+  const currVal = parseFloat(readProgressInput.value);
+
+  const progressPercentage = (currVal - min) / (max - min);
+
+  const thumbWidth = 20;
+  const offset = (0.5 - progressPercentage) * thumbWidth;
+  const backgroundSize = `calc(${progressPercentage * 100}% + ${offset}px) 100%`;
+
+  readProgressInput.style.backgroundSize = backgroundSize;
+}
+
 /**
  * Event Listeners
  */
+readProgressInput.addEventListener('change', ()=>{
+  updateProgressBar(true);
+});
+
+// TODO: check if have read highlighted text already
 startBtn.addEventListener('click', async ()=> {
   if (!isPaused) { return; }
 
@@ -73,6 +118,7 @@ startBtn.addEventListener('click', async ()=> {
       isPaused = false;
       display.textContent = "";
       playNextWord();
+      console.log("total n of words:" + words.length);
     } else {
       display.textContent = "Please hightlight text first.";
     }
