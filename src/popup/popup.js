@@ -7,6 +7,7 @@ const display = document.getElementById('reader-display');
 const readProgressInput = document.getElementById('readProgress');
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
+const infoBtn = document.getElementById('info-btn');
 const wpdInput = document.getElementById('wpd');
 const wpmInput = document.getElementById('wpm');
 
@@ -21,15 +22,13 @@ browser.storage.local.get(['savedWpm', 'savedWpd']).then((result) => {
 
 /**
  * RSVP Loop.
- * TODO: have a method to go forward and backward (like a music player)
- * TODO: display percentage of completion
  */
 function playNextWord() {
   updateProgressBar();
 
   if (currIdx >= words.length) {
     stopReading();
-    display.textContent = "Finished!"; // TODO: this is lame. Also, don't lock it
+    display.textContent = "Finished!";
     return;
   }
 
@@ -103,7 +102,10 @@ readProgressInput.addEventListener('change', ()=>{
   updateProgressBar(true);
 });
 
-// TODO: check if have read highlighted text already
+// TODO: check if have read highlighted text already (why did I write this comment? I had a fever, man)
+// TODO: some websites have new line after a paragraph where there's no space between first and second paragraph.
+// This causes two words to join togther from the end of first pargraph and the first word of second paragraph
+// e.g. "look.Hello" Fix this later.
 startBtn.addEventListener('click', async ()=> {
   if (!isPaused) { return; }
 
@@ -118,7 +120,6 @@ startBtn.addEventListener('click', async ()=> {
       isPaused = false;
       display.textContent = "";
       playNextWord();
-      console.log("total n of words:" + words.length);
     } else {
       display.textContent = "Please hightlight text first.";
     }
@@ -130,6 +131,13 @@ startBtn.addEventListener('click', async ()=> {
 
 pauseBtn.addEventListener('click', ()=> {
   stopReading();
+});
+
+infoBtn.addEventListener('click', ()=> {
+  browser.tabs.create({
+    url: "https://alidestiny.com/practiread",
+    active: true
+  });
 });
 
 /*
