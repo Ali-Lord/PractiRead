@@ -7,7 +7,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "PractiRead@raz.local", // temporary
-      "strict_min_version": "149.0"
+      "strict_min_version": "142.0"
     },
 
     "gecko_android": {
@@ -15,18 +15,26 @@
     }
   },
 
-  "permission":[
+  "permissions":[
     "activeTab",
-    "storage"
+    "storage",
+    "scripting"
   ],
-
-  "action": {
-    // TODO
-  },
 
   "icons": {
     // TODO
   },
+
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["lib/browser-polyfill.min.js", "./content.js"]
+    }
+  ],
 
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self';"
