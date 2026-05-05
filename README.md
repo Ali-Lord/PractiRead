@@ -1,7 +1,9 @@
-# PractiRead
+# ![icon](src/icons/icon48.png) PractiRead
 PractiRead is a free privacy-friendly and secure open-source RSVP (Rapid Serial Visual Presentation) speed reader. It allows users to highlight text on any webpage and read it back at a controlled pace, reducing subvocalization and increasing efficiency.
 
 I built this because I don't trust the standard stack. Most free tools (and even paid ones) are just legal malware. This one isn't. The source code is available so you could read and install it yourself from it if needed.
+
+![extension-screenshot](readme-asset/extension-screenshot.png)
 
 ## Zero-telemetry
 There is no data collection. In fact, there is zero data transferred from this tool for any purpose, to anyone, any corporation, ever. No hidden "free, but sell your data" crap.
@@ -20,6 +22,22 @@ When you highlight text, it stays in volatile  memory on your machine. It's neve
 2. Highlight it.
 3. Click on the extension.
 4. Press the play button.
+
+## Install from browser's official web store
+### Mozilla FireFox
+TODO
+
+### Google Chrome
+TODO
+
+### Microsoft Edge (Chromium)
+TODO
+
+### Brave (Chromium)
+TODO
+
+### Safari
+Coming as soon as when I don't feel like an idiot for paying 99USD per year for a for-profit corporation just to release one free extension. What the heck, Apple? Just install from source for now (manual installation).
 
 ## Manual installation
 1. Clone the repository
