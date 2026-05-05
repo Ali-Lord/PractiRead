@@ -6,8 +6,8 @@ I built this because I don't trust the standard stack. Most free tools (and even
 ## Zero-telemetry
 There is no data collection. In fact, there is zero data transferred from this tool for any purpose, to anyone, any corporation, ever. No hidden "free, but sell your data" crap.
 
-> ![NOTE]
-> Paid tools do not necessarily value your privacy and probably not secure if the source isn't available for anyone to audit. Do you really want to trust a for-profit tool that would always be in your browser or your phone and may potentially sell your data to the highest bidder so they could advertise you junk? Or worse, sell your data to politicians so they could manipulate you better to serve the worse for-profit corporations to existence?
+>![NOTE]
+>Paid tools do not necessarily value your privacy and probably not secure if the source isn't available for anyone to audit. Do you really want to trust a for-profit tool that would always be in your browser or your phone and may potentially sell your data to the highest bidder so they could advertise you junk? Or worse, sell your data to politicians so they could manipulate you better to serve the worse for-profit corporations to existence?
 
 ## On-demand execution
 It doesn't sit in the background watching you. It doesn't exist until you click the icon on your toolbar. Only then does it wake up, grab the text you've explicitly highlighted and feed it to the display. Aka, a tool doing exactly what it's supposed to do and nothing  else.
