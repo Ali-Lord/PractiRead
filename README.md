@@ -29,3 +29,14 @@ When you highlight text, it stays in volatile  memory on your machine. It's neve
 4. Load the usr/ directory as an unpacked extension
 
 If you just want to debug it, you could simply go on `about:debugging#/runtime/this-firefox` on FireFox (I use Librewolf, so I tested it on that) and load the `src/manifest.json` file by clicking on "Load Temporary Add-on..." button.
+
+## Project structure
+
+src/
+|- manifest.json # Security policies and permissions
+|- content.js    # Tab-level text extraction
+|- lib/          # Local dependencies only
+|- popup/        # The reader interface and RSVP logic
+
+## License
+AGPL-3.0 License because people power, always.
