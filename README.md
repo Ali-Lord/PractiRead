@@ -1,4 +1,9 @@
-# ![icon](src/icons/icon48.png) PractiRead
+
+<p align="center">
+  <img width="50" src="src/icons/icon128.png">
+  <h1 align="center">PractiRead</h1>
+</p>
+
 PractiRead is a free privacy-friendly and secure open-source RSVP (Rapid Serial Visual Presentation) speed reader. It allows users to highlight text on any webpage and read it back at a controlled pace, reducing subvocalization and increasing efficiency.
 
 I built this because I don't trust the standard stack. Most free tools (and even paid ones) are just legal malware. This one isn't. The source code is available so you could read and install it yourself from it if needed.
