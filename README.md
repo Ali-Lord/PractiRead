@@ -30,7 +30,7 @@ When you highlight text, it stays in volatile  memory on your machine. It's neve
 
 ## Install from browser's official web store
 ### Mozilla FireFox
-TODO
+https://addons.mozilla.org/en-US/firefox/addon/practiread/
 
 ### Google Chrome
 TODO
