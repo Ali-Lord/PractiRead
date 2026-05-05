@@ -51,7 +51,7 @@ Coming as soon as when I don't feel like an idiot for paying 99USD per year for 
 3. Enable developer mode (if needed)
 4. Load the usr/ directory as an unpacked extension
 
-If you just want to debug it, you could simply go on `about:debugging#/runtime/this-firefox` on FireFox (I use Librewolf, so I tested it on that) and load the `src/manifest.json` file by clicking on "Load Temporary Add-on..." button.
+If you just want to debug it, you could simply go on `about:debugging#/runtime/this-firefox` on FireFox like in the screenshot above (I use Librewolf, so I tested it on that during development) and load the `src/manifest.json` file by clicking on "Load Temporary Add-on..." button.
 
 ## Project structure
 ```
