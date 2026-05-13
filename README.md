@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img width="50" src="src/icons/icon128.png">
+    <img width="80" src="src/icons/icon128.png">
     <h1 align="center">PractiRead</h1>
 </p>
 
