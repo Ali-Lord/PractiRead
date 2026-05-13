@@ -110,12 +110,21 @@ startBtn.addEventListener('click', async ()=> {
   if (!isPaused) { return; }
 
   const tabs = await browser.tabs.query({ active: true, currentWindow: true});
+  const tabId = tabs[0].id;
 
   try {
-    const resp = await browser.tabs.sendMessage(tabs[0].id, {action: "getSelectedText"});
+    const results = await browser.scripting.executeScript({
+      target: {tabId: tabId},
+      func: () => {
+        const selectedText = window.getSelection().toString().trim();
+        return selectedText;
+      }
+    });
 
-    if (resp && resp.text) {
-      const sanitizedText = resp.text.replace(/[\x00-\x1F\x7F-\x9F]/g, "").replace(/\s+/g, " ");
+    const selectedText = results[0]?.result || "";
+
+    if (selectedText.length > 0) {
+      const sanitizedText = selectedText.replace(/[\x00-\x1F\x7F-\x9F]/g, "").replace(/\s+/g, " ");
       words = sanitizedText.split(/\s+/);
       isPaused = false;
       display.textContent = "";
@@ -125,7 +134,7 @@ startBtn.addEventListener('click', async ()=> {
     }
   } catch (err) {
     display.textContent = "Cannot read this page.";
-    console.error("Connection error:", err);
+    console.error("Error:", err);
   }
 });
 
