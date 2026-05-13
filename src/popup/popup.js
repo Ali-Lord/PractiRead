@@ -103,9 +103,6 @@ readProgressInput.addEventListener('change', ()=>{
 });
 
 // TODO: check if have read highlighted text already (why did I write this comment? I had a fever, man)
-// TODO: some websites have new line after a paragraph where there's no space between first and second paragraph.
-// This causes two words to join togther from the end of first pargraph and the first word of second paragraph
-// e.g. "look.Hello" Fix this later.
 startBtn.addEventListener('click', async ()=> {
   if (!isPaused) { return; }
 
@@ -124,8 +121,14 @@ startBtn.addEventListener('click', async ()=> {
     const selectedText = results[0]?.result || "";
 
     if (selectedText.length > 0) {
-      const sanitizedText = selectedText.replace(/[\x00-\x1F\x7F-\x9F]/g, "").replace(/\s+/g, " ");
-      words = sanitizedText.split(/\s+/);
+      const sanitizedText = selectedText
+        .replace(/[\x00-\x1F\x7F-\x9F]/g, "")
+        .replace(/([.!?])(\S)/g, '$1 $2')
+        .replace(/\s+/g, " ")
+        .trim();
+
+      words = sanitizedText.split(/\s+/).filter(word => word.length > 0);
+
       isPaused = false;
       display.textContent = "";
       playNextWord();
